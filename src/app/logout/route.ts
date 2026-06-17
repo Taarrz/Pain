@@ -1,12 +1,16 @@
-import { NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
 import { clearSession } from "@/lib/session";
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   await clearSession();
-  return NextResponse.redirect(new URL("/login", request.url));
+  const url = request.nextUrl.clone();
+  url.pathname = "/login";
+  return NextResponse.redirect(url);
 }
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   await clearSession();
-  return NextResponse.redirect(new URL("/login", request.url));
+  const url = request.nextUrl.clone();
+  url.pathname = "/login";
+  return NextResponse.redirect(url);
 }

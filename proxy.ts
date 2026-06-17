@@ -4,18 +4,21 @@ const PUBLIC_PATHS = ["/login", "/logout"];
 
 export default function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
-
   const session = req.cookies.get("mock_session")?.value;
 
   if (PUBLIC_PATHS.includes(pathname)) {
     if (session && pathname === "/login") {
-      return NextResponse.redirect(new URL("/", req.url));
+      const url = req.nextUrl.clone();
+      url.pathname = "/";
+      return NextResponse.redirect(url);
     }
     return NextResponse.next();
   }
 
   if (!session && pathname !== "/") {
-    return NextResponse.redirect(new URL("/login", req.url));
+    const url = req.nextUrl.clone();
+    url.pathname = "/login";
+    return NextResponse.redirect(url);
   }
 
   return NextResponse.next();
