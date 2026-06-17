@@ -44,13 +44,13 @@ export default async function StatsPage({
             >
               ← การแจ้งเตือน
             </Link>
-            <Link
+            <a
               href="/logout"
               className="text-sm font-medium hover:underline"
               style={{ color: "#5a6b80" }}
             >
               ออกจากระบบ
-            </Link>
+            </a>
           </div>
         }
       />

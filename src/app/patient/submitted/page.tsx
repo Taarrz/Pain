@@ -47,7 +47,7 @@ export default function SubmittedPage() {
             >
               ทำแบบประเมินอีกครั้ง
             </Link>
-            <Link
+            <a
               href="/logout"
               className="block w-full py-3 rounded-xl font-medium transition"
               style={{
@@ -56,7 +56,7 @@ export default function SubmittedPage() {
               }}
             >
               ออกจากระบบ
-            </Link>
+            </a>
           </div>
         </div>
       </main>
