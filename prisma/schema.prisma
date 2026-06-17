@@ -1,0 +1,80 @@
+// Prisma schema — Pain Assessment
+// Docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  PATIENT
+  NURSE
+}
+
+enum AlertStatus {
+  PENDING
+  ACKNOWLEDGED
+}
+
+enum AlertSeverity {
+  GREEN
+  YELLOW
+  RED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  passwordHash String
+  role         UserRole
+  name         String
+  createdAt    DateTime @default(now())
+
+  patient            Patient?
+  acknowledgedAlerts Alert[]
+}
+
+model Patient {
+  id         String   @id @default(cuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  age        Int
+  room       String
+  bed        String
+  diagnosis  String
+  admittedAt DateTime @default(now())
+
+  painRecords PainRecord[]
+}
+
+model PainRecord {
+  id              String   @id @default(cuid())
+  patientId       String
+  patient         Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  score           Int
+  characteristics String[]
+  locations       String[]
+  factors         String[]
+  recordedAt      DateTime @default(now())
+
+  alert Alert?
+
+  @@index([patientId, recordedAt])
+}
+
+model Alert {
+  id               String        @id @default(cuid())
+  painRecordId     String        @unique
+  painRecord       PainRecord    @relation(fields: [painRecordId], references: [id], onDelete: Cascade)
+  severity         AlertSeverity
+  status           AlertStatus   @default(PENDING)
+  acknowledgedById String?
+  acknowledgedBy   User?         @relation(fields: [acknowledgedById], references: [id])
+  acknowledgedAt   DateTime?
+  createdAt        DateTime      @default(now())
+
+  @@index([status, severity])
+}

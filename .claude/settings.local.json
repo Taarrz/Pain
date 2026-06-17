@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Move-Item -Destination \"D:\\\\Pain\\\\\" -Force)",
+      "Bash(docker exec *)",
+      "PowerShell($pids = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique; if \\($pids\\) { $pids | ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue } }; Write-Output \"ok\")"
+    ]
+  }
+}
