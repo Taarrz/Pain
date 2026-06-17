@@ -1,5 +1,6 @@
 import { requirePatient } from "@/lib/dal";
 import { TopBar } from "@/components/TopBar";
+import { LogoutButton } from "@/components/LogoutButton";
 import { AssessmentForm } from "./_components/AssessmentForm";
 
 export default async function PatientPage() {
@@ -10,13 +11,10 @@ export default async function PatientPage() {
       <TopBar
         subtitle="แบบประเมินความปวด"
         right={
-          <a
-            href="/logout"
+          <LogoutButton
             className="text-sm font-medium hover:underline"
             style={{ color: "#5a6b80" }}
-          >
-            ออกจากระบบ
-          </a>
+          />
         }
       />
 

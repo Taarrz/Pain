@@ -3,6 +3,7 @@ import { requireNurse } from "@/lib/dal";
 import { prisma } from "@/lib/prisma";
 import { serializeAlert } from "@/lib/alert-serialize";
 import { TopBar } from "@/components/TopBar";
+import { LogoutButton } from "@/components/LogoutButton";
 import { AlertList } from "./_components/AlertList";
 
 export const dynamic = "force-dynamic";
@@ -35,13 +36,10 @@ export default async function NursePage() {
             >
               📈 สถิติ
             </Link>
-            <a
-              href="/logout"
+            <LogoutButton
               className="text-sm font-medium hover:underline"
               style={{ color: "#5a6b80" }}
-            >
-              ออกจากระบบ
-            </a>
+            />
           </div>
         }
       />

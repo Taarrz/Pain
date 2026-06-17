@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { LogoutButton } from "@/components/LogoutButton";
 
 export default function NurseError({
   error,
@@ -33,12 +34,10 @@ export default function NurseError({
           >
             ลองใหม่
           </button>
-          <a
-            href="/logout"
+          <LogoutButton
             className="block w-full py-3 rounded-xl border border-zinc-300 text-zinc-700 font-medium hover:bg-zinc-50"
-          >
-            ออกจากระบบ
-          </a>
+            style={{ width: "100%" }}
+          />
         </div>
       </div>
     </main>

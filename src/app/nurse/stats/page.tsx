@@ -2,6 +2,7 @@ import Link from "next/link";
 import { requireNurse } from "@/lib/dal";
 import { prisma } from "@/lib/prisma";
 import { TopBar } from "@/components/TopBar";
+import { LogoutButton } from "@/components/LogoutButton";
 import { StatsView } from "./_components/StatsView";
 
 export const dynamic = "force-dynamic";
@@ -44,13 +45,10 @@ export default async function StatsPage({
             >
               ← การแจ้งเตือน
             </Link>
-            <a
-              href="/logout"
+            <LogoutButton
               className="text-sm font-medium hover:underline"
               style={{ color: "#5a6b80" }}
-            >
-              ออกจากระบบ
-            </a>
+            />
           </div>
         }
       />

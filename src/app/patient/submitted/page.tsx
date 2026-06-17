@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TopBar } from "@/components/TopBar";
+import { LogoutButton } from "@/components/LogoutButton";
 
 export default function SubmittedPage() {
   return (
@@ -47,16 +48,14 @@ export default function SubmittedPage() {
             >
               ทำแบบประเมินอีกครั้ง
             </Link>
-            <a
-              href="/logout"
+            <LogoutButton
               className="block w-full py-3 rounded-xl font-medium transition"
               style={{
                 border: "1px solid #dce5ef",
                 color: "#5a6b80",
+                width: "100%",
               }}
-            >
-              ออกจากระบบ
-            </a>
+            />
           </div>
         </div>
       </main>
